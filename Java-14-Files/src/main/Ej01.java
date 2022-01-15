@@ -20,7 +20,7 @@ public class Ej01 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        File f = new File("archivos".concat(File.separator.concat("fich01.txt")));
+        File f = new File("archivos".concat("/fich01.txt"));
         FileWriter fW;
         BufferedWriter bW = null;
         try {
