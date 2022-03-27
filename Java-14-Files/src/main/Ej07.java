@@ -22,24 +22,34 @@ public class Ej07 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        int[] cantidades = numeroLetrasPalabrasYLineas("archivos".concat(File.separator.concat("fich04.txt")));
+        System.out.println("Letras: "+cantidades[0]);
+        System.out.println("Palabras: "+cantidades[1]);
+        System.out.println("Lineas: "+cantidades[2]);
     }
 
-    public int[] numeroLetrasPalabrasYLineas(String archivo) {
+    public static int[] numeroLetrasPalabrasYLineas(String archivo) {
         File f = new File(archivo);
         if (!f.exists()) {
             return null;
         }
-
+        int lineas = 0, palabras = 0, caracteres = 0;
         try (FileReader fR = new FileReader(f);
                 BufferedReader bfR = new BufferedReader(fR);) {
-            
+
+            String linea;
+
+            while ((linea = bfR.readLine()) != null) {
+                lineas++;
+                caracteres += linea.length();
+                palabras += linea.split(" ").length;
+            }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Ej07.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(Ej07.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        return new int[]{caracteres, palabras, lineas};
     }
 
 }
